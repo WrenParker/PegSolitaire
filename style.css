@@ -1,0 +1,28 @@
+*{
+    font-family: Georgia;
+    background-color: #f2f2f2;
+}
+
+.header{
+    text-align: center;
+}
+
+.board-wrapper{
+    padding-top: 5vh;
+    text-align: center;
+    display: grid;
+    justify-content: center;
+    
+}
+
+.board {
+    grid-template-rows: repeat(1fr, 5);
+    width: 50vw;
+}
+
+.row {
+    display:grid;
+    height: 5vh;
+    padding-left: ;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+}
