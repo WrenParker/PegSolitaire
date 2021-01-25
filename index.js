@@ -45,6 +45,7 @@ class PegSolitaire {
 
                     else if(this.isAvailableToMove(piece)) {
                         let moves = this.findMoves(piece);
+                        moves[0][1].boardElement.style.color = "Green";
                         console.log(moves);
                     }
                 })
