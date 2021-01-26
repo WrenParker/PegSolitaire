@@ -69,8 +69,153 @@ class PegSolitaire {
         } else
         if(currentRow == this.board[1]) {
             return this.findMovesB(number);
+        } else
+        if(currentRow == this.board[2]) {
+            return this.findMovesC(number);
+        } else
+        if(currentRow == this.board[3]) {
+            return this.findMovesD(number);
+        } else
+        if(currentRow == this.board[4]) {
+            return this.findMovesE(number);
         }
 
+    }
+
+    findMovesE = (number) => {
+        if(number=="0") return this.findMovesE0();
+        if(number=="1") return this.findMovesE1();
+        if(number=="2") return this.findMovesE2();
+        if(number=="3") return this.findMovesE3();
+        if(number=="4") return this.findMovesE4();
+    }
+
+    findMovesE0 = () => {
+        let moves = []
+        //up
+        if(this.board[3][0].isActive && !this.board[2][0].isActive) moves.push( [this.board[3][0], this.board[2][0]] );
+        //right
+        if(this.board[4][1].isActive && !this.board[4][2].isActive) moves.push( [this.board[4][1], this.board[4][2]] );
+        return moves;
+    }
+
+    findMovesE1 = () => {
+        let moves = []
+        //up
+        if(this.board[3][1].isActive && !this.board[2][1].isActive) moves.push( [this.board[3][1], this.board[2][1]] );
+        //right
+        if(this.board[4][2].isActive && !this.board[4][3].isActive) moves.push( [this.board[4][2], this.board[4][3]] );
+        return moves;
+    }
+
+    findMovesE2 = () => {
+        let moves = []
+        //up
+        if(this.board[3][2].isActive && !this.board[2][2].isActive) moves.push( [this.board[3][2], this.board[2][2]] );
+        if(this.board[3][1].isActive && !this.board[2][0].isActive) moves.push( [this.board[3][1], this.board[2][0]] );
+        //right
+        if(this.board[4][3].isActive && !this.board[4][4].isActive) moves.push( [this.board[4][3], this.board[4][4]] );
+        if(this.board[4][1].isActive && !this.board[4][0].isActive) moves.push( [this.board[4][1], this.board[4][0]] );
+        return moves;
+    }
+
+    findMovesE3 = () => {
+        let moves = []
+        //up
+        if(this.board[3][2].isActive && !this.board[2][1].isActive) moves.push( [this.board[3][2], this.board[2][1]] );
+        //left
+        if(this.board[4][2].isActive && !this.board[4][1].isActive) moves.push( [this.board[4][2], this.board[4][1]] );
+        return moves;
+    }
+
+    findMovesE4 = () => {
+        let moves = []
+        //up
+        if(this.board[3][3].isActive && !this.board[2][2].isActive) moves.push( [this.board[3][3], this.board[2][2]] );
+        //left
+        if(this.board[4][3].isActive && !this.board[4][2].isActive) moves.push( [this.board[4][3], this.board[4][2]] );
+        return moves;
+    }
+
+    findMovesD = (number) => {
+        if(number=="0") return this.findMovesD0();
+        if(number=="1") return this.findMovesD1();
+        if(number=="2") return this.findMovesD2();
+        if(number=="3") return this.findMovesD3();
+    }
+
+    findMovesD0 = () => {
+        let moves = []
+        //up
+        if(this.board[2][0].isActive && !this.board[1][0].isActive) moves.push( [this.board[2][0], this.board[1][0]] );
+        //right
+        if(this.board[3][1].isActive && !this.board[3][2].isActive) moves.push( [this.board[3][1], this.board[3][2]] );
+        return moves;
+    }
+
+    findMovesD1 = () => {
+        let moves = []
+        //up
+        if(this.board[2][1].isActive && !this.board[1][1].isActive) moves.push( [this.board[2][1], this.board[1][1]] );
+        //right
+        if(this.board[3][2].isActive && !this.board[3][3].isActive) moves.push( [this.board[3][2], this.board[3][3]] );
+        return moves;
+    }
+
+    findMovesD2 = () => {
+        let moves = []
+        //up
+        if(this.board[2][1].isActive && !this.board[1][0].isActive) moves.push( [this.board[2][1], this.board[1][0]] );
+        //left
+        if(this.board[3][1].isActive && !this.board[3][0].isActive) moves.push( [this.board[3][1], this.board[3][0]] );
+        return moves;
+    }
+
+    findMovesD3 = () => {
+        let moves = []
+        //up
+        if(this.board[2][2].isActive && !this.board[1][1].isActive) moves.push( [this.board[2][2], this.board[1][1]] );
+        //left
+        if(this.board[3][2].isActive && !this.board[3][1].isActive) moves.push( [this.board[3][2], this.board[3][1]] );
+        return moves;
+    }
+
+    findMovesC = (number) => {
+        if(number=="0") return this.findMovesC0();
+        if(number=="1") return this.findMovesC1();
+        if(number=="2") return this.findMovesC2();
+    }
+
+    findMovesC0 = () => {
+        let moves = []
+        //up
+        if(this.board[1][0].isActive && !this.board[0][0].isActive) moves.push( [this.board[1][0], this.board[0][0]] );
+        //down
+        if(this.board[3][0].isActive && !this.board[4][0].isActive) moves.push( [this.board[3][0], this.board[4][0]] );
+        if(this.board[3][1].isActive && !this.board[4][2].isActive) moves.push( [this.board[3][1], this.board[4][2]] );
+        //right
+        if(this.board[2][1].isActive && !this.board[2][2].isActive) moves.push( [this.board[2][1], this.board[2][2]] );
+        return moves;
+    }
+
+    findMovesC1 = () => {
+        let moves = []
+        //down
+        if(this.board[3][1].isActive && !this.board[4][1].isActive) moves.push( [this.board[3][1], this.board[4][1]] );
+        if(this.board[3][2].isActive && !this.board[4][3].isActive) moves.push( [this.board[3][2], this.board[4][3]] );
+        return moves;
+    }
+
+    findMovesC2 = () => {
+        let moves = []
+        //up
+        if(this.board[1][1].isActive && !this.board[0][0].isActive) moves.push( [this.board[1][1], this.board[0][0]] );
+        //down
+        if(this.board[3][2].isActive && !this.board[4][2].isActive) moves.push( [this.board[3][2], this.board[4][2]] );
+        if(this.board[3][3].isActive && !this.board[4][4].isActive) moves.push( [this.board[3][3], this.board[4][4]] );
+        //left
+        if(this.board[2][1].isActive && !this.board[2][0].isActive) moves.push( [this.board[2][1], this.board[2][0]] );
+        return moves;
     }
 
     findMovesB = (number) => {
