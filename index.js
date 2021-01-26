@@ -17,6 +17,8 @@ main = () => {
 class PegSolitaire {
     firstMove = true;
     activeMove = false;
+    possibleMoves;
+    currentlySelected;
 
     constructor() {
 
@@ -37,6 +39,7 @@ class PegSolitaire {
             row.forEach(piece => {
                 //let piece = document.getElementById(element.name);
                 piece.boardElement.addEventListener("click", ()=>{
+
                     if(this.firstMove) {
                         piece.boardElement.innerHTML = "O";
                         piece.isActive = false;
@@ -44,11 +47,51 @@ class PegSolitaire {
                     }
 
                     else if(this.isAvailableToMove(piece)) {
-                        let moves = this.findMoves(piece);
-                        moves[0][1].boardElement.style.color = "Green";
-                        console.log(moves);
+                        this.colorAllBlack();
+
+                        piece.boardElement.style.color = "Yellow";
+                        this.currentlySelected = piece;
+
+                        this.possibleMoves = this.findMoves(piece);
+                        console.log(this.possibleMoves);
+
+                        this.possibleMoves.forEach(move => {
+                            move[1].boardElement.style.color = "Green";
+                        })
+                    }
+
+                    else if(this.isPossibleMove(piece)!=null) {
+                        let move = this.isPossibleMove(piece);
+                        this.activeMove = false;
+                        
+                        this.currentlySelected.boardElement.innerHTML = "O";
+                        this.currentlySelected.isActive = false;
+                        
+                        move[0].isActive = false;
+                        move[0].boardElement.innerHTML = "O";
+
+                        move[1].isActive = true;
+                        move[1].boardElement.innerHTML = "X";
+
+                        this.colorAllBlack();
                     }
                 })
+            })
+        })
+    }
+
+    isPossibleMove = (piece) => {
+        let possibleMove = null;
+        this.possibleMoves.forEach(move => {
+            if(move[1]==piece) possibleMove = move;
+        })
+        return possibleMove;
+    }
+
+    colorAllBlack = () => {
+        this.board.forEach(row => {
+            row.forEach(piece => {
+                piece.boardElement.style.color = 'black';
             })
         })
     }
@@ -64,7 +107,6 @@ class PegSolitaire {
         let number = piece.name.slice(1);
         
         if(currentRow == this.board[0]) {
-            console.log("Finding moves for A0")
             return this.findMovesA0();
         } else
         if(currentRow == this.board[1]) {
@@ -258,6 +300,7 @@ class Peg {
     constructor(name) {
         this.name = name
         this.isActive = true;
+        this.isSelected = false;
         this.boardElement = document.getElementById(name);
         this.htmlText = this.boardElement.innerHTML
     }
